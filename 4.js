@@ -1,24 +1,19 @@
-var Clock = function(div) {
+var Clock = function(elem) {
   this.height = 120;
   this.timer = null;
   this.width = 720;
 
-  this.container = $(div);
-  this.container.css({
+  this.container = $(elem).css({
     height: this.height + 'px',
     position: 'relative',
     width: this.width + 'px'
   });
 
-  this.pixel = $('<div></div>');
-  this.pixel.css({
-    background: '#000000',
-    height: '1px',
-    position: 'absolute',
-    width: '1px'
-  });
+  this.pixel = $('<div id="pixel"></div>');
+  this.text = $('<span id="text"></span>');
 
   this.container.append(this.pixel);
+  this.container.append(this.text);
 
   // Listen for ticking clock.
   $().bind('clock.tick', function(event, self) {
@@ -31,12 +26,14 @@ Clock.prototype = {
     var n = this.seconds();
     var x = Math.floor(n / this.height);
     var y = n % this.height;
-
-    this.pixel.text(n);
-    this.pixel.css({
+    var css = {
       left: x + 'px',
+      position: 'absolute',
       top: y + 'px'
-    });
+    };
+
+    this.pixel.css(css);
+    this.text.css(css).text(n + '/86400');
   },
 
   seconds: function() {
