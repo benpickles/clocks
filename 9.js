@@ -46,20 +46,22 @@ Clock.prototype = {
       };
     }
 
+    var radius = this.radius;
+
     $('span', this.hoursAm).each(function(i) {
-      $(this).css(position(i, 12, 100)).text(i);
+      $(this).css(position(i, 12, radius * 0.4)).text(i);
     });
 
     $('span', this.hoursPm).each(function(i) {
-      $(this).css(position(i, 12, 120)).text(i + 12);
+      $(this).css(position(i, 12, radius * 0.5)).text(i + 12);
     });
 
     $('span', this.minutes).each(function(i) {
-      $(this).css(position(i, 60, 160)).text(i);
+      $(this).css(position(i, 60, radius * 0.75)).text(i);
     });
 
     $('span', this.seconds).each(function(i) {
-      $(this).css(position(i, 60, 200)).text(i);
+      $(this).css(position(i, 60, radius)).text(i);
     });
   },
 
@@ -80,6 +82,19 @@ Clock.prototype = {
   },
 
   update: function() {
-    //
+    var now = new Date();
+    var hours = now.getHours();
+    var minutes = now.getMinutes();
+    var seconds = now.getSeconds();
+
+    $('span.current', this.container).removeClass('current');
+    $('span.past', this.container).removeClass('past');
+
+    $('.hours span:lt(' + hours + ')', this.container).addClass('past');
+    $('.hours span:eq(' + hours + ')', this.container).addClass('current');
+    $('span:lt(' + minutes + ')', this.minutes).addClass('past');
+    $('span:eq(' + minutes + ')', this.minutes).addClass('current');
+    $('span:lt(' + seconds + ')', this.seconds).addClass('past');
+    $('span:eq(' + seconds + ')', this.seconds).addClass('current');
   }
 }
