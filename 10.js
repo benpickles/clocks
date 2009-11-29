@@ -7,6 +7,8 @@ var Clock = function(div) {
   $().bind('clock.tick', function(event, self) {
     self.update();
   });
+
+  this.setup();
 };
 
 Clock.prototype = {
@@ -15,7 +17,7 @@ Clock.prototype = {
     var mod = seconds % c3;
     var c1 = Math.min(28800 - mod, 14400) / 14400;
     var c2 = Math.min(14400, mod) / 14400;
-    var r, g, b;
+    var r = 0, g = 0, b = 0;
 
     switch(Math.floor(seconds / c3)) {
       case 0:
@@ -32,18 +34,24 @@ Clock.prototype = {
         break;
     };
 
-    var rgb = 'rgb(' + [
-      Math.round(r * 255) || 0,
-      Math.round(g * 255) || 0,
-      Math.round(b * 255) || 0
-    ].join(',') + ')';
+    r = Math.round(r * 255);
+    g = Math.round(g * 255);
+    b = Math.round(b * 255);
 
-    return rgb;
+    return 'rgb(' + [r, g, b].join(',') + ')';
   },
 
   seconds: function() {
     var now = new Date();
     return (now.getHours() * 3600) + (now.getMinutes() * 60) + now.getSeconds();
+  },
+
+  setup: function() {
+    for (var i = 0; i < 24; i++) {
+      this.container.append($('<div></div>').text(i).css({
+        background: this.colourAt(3600 * i)
+      }));
+    }
   },
 
   start: function() {
@@ -64,7 +72,6 @@ Clock.prototype = {
 
   update: function() {
     var colour = this.colourAt(this.seconds());
-    console.log(colour)
     this.container.css('background', colour);
   }
 }
