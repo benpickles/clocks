@@ -1,14 +1,29 @@
 var Clock = function(div) {
   this.timer = null;
 
-  this.container = $(div);
+  this.am = $('<div></div>');
+  this.pm = $('<div></div>').css({
+    bottom: 0,
+    left: 0,
+    position: 'absolute'
+  });
+
+  this.container = $(div).height($().height()).
+    append(this.am).append(this.pm);
+
+  this.setup();
+  this.draw();
+
+  var self = this;
+
+  $(window).resize(function() {
+    self.draw();
+  });
 
   // Listen for ticking clock.
   $().bind('clock.tick', function(event, self) {
     self.update();
   });
-
-  this.setup();
 };
 
 Clock.prototype = {
@@ -41,17 +56,38 @@ Clock.prototype = {
     return 'rgb(' + [r, g, b].join(',') + ')';
   },
 
+  draw: function() {
+    this.drawHours(this.am);
+    this.drawHours(this.pm);
+  },
+
+  drawHours: function(context) {
+    var width = $().width();
+    var w = Math.floor(width / 12);
+
+    $('div', context).each(function(i) {
+      $(this).width((i == 11 ? width - (w * 11) : w) + 'px');
+    });
+  },
+
   seconds: function() {
     var now = new Date();
     return (now.getHours() * 3600) + (now.getMinutes() * 60) + now.getSeconds();
   },
 
   setup: function() {
-    for (var i = 0; i < 24; i++) {
-      this.container.append($('<div></div>').text(i).css({
-        background: this.colourAt(3600 * i)
-      }));
-    }
+    for (var i = 0; i < 12; i++) { this.setupHour(this.am, i); }
+    for (var i = 12; i < 24; i++) { this.setupHour(this.pm, i); }
+  },
+
+  setupHour: function(elem, i) {
+    elem.append(
+      $('<div></div>').text(i).css({
+        background: this.colourAt(i * 3600),
+        float: 'left',
+        padding: $().height() / 8 + 'px 0'
+      })
+    );
   },
 
   start: function() {
