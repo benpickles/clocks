@@ -22,14 +22,14 @@ Clock.prototype = {
     switch(Math.floor(seconds / c3)) {
       case 0:
         b = c1;
-        r = c2;
-        break;
-      case 1:
-        r = c1;
         g = c2;
         break;
-      case 2:
+      case 1:
         g = c1;
+        r = c2;
+        break;
+      case 2:
+        r = c1;
         b = c2;
         break;
     };
