@@ -30,10 +30,11 @@ Clock.prototype = {
     for (var i = 0; i < 60; i++) { this.minutes.append($('<span></span>')); };
     for (var i = 0; i < 60; i++) { this.seconds.append($('<span></span>')); };
 
-    this.container.append(this.hoursAm);
-    this.container.append(this.hoursPm);
-    this.container.append(this.minutes);
-    this.container.append(this.seconds);
+    this.container.
+      append(this.hoursAm).
+      append(this.hoursPm).
+      append(this.minutes).
+      append(this.seconds);
 
     var position = function(i, total, radius) {
       var slice = (2 * Math.PI) / total;

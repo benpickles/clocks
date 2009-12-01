@@ -34,8 +34,8 @@ Clock.prototype = {
     var y = -Math.cos(radians) * radius;
 
     return {
-      left: x + 'px',
-      top: y + 'px',
+      left: this.radius + x + 'px',
+      top: this.radius + y + 'px',
       '-moz-transform': 'rotate(' + angle + 'deg)',
       '-webkit-transform': 'rotate(' + angle + 'deg)'
     };
@@ -68,6 +68,6 @@ Clock.prototype = {
 
     this.hours.text(h).css(this.position(hd, this.radius));
     this.minutes.text(m).css(this.position(md, this.radius * 0.8));
-    this.seconds.text(s).css(this.position(sd, this.radius * 0.67));
+    this.seconds.text(s).css(this.position(sd, this.radius * 0.66));
   }
 }

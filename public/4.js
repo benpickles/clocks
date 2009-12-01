@@ -12,8 +12,9 @@ var Clock = function(elem) {
   this.pixel = $('<div id="pixel"></div>');
   this.text = $('<span id="text"></span>');
 
-  this.container.append(this.pixel);
-  this.container.append(this.text);
+  this.container.
+    append(this.pixel).
+    append(this.text);
 
   // Listen for ticking clock.
   $().bind('clock.tick', function(event, self) {
