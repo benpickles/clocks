@@ -2,9 +2,21 @@ var Clock = function(div, radius) {
   this.radius = radius;
   this.timer = null;
 
-  this.hours = $('<div class="hours"></div>');
-  this.minutes = $('<div class="minutes"></div>');
-  this.seconds = $('<div class="seconds"></div>');
+  var css = {
+    position: 'absolute',
+    'text-align': 'center',
+    width: this.radius / 2 +'px'
+  };
+
+  this.hours = $('<div class="hours"></div>').css(css).css(
+    'font-size', this.radius * 0.4 + 'px'
+  );
+  this.minutes = $('<div class="minutes"></div>').css(css).css(
+    'font-size', this.radius * 0.3 + 'px'
+  );
+  this.seconds = $('<div class="seconds"></div>').css(css).css(
+    'font-size', this.radius * 0.2 + 'px'
+  );
 
   this.container = $(div).
     append(this.hours).append(this.minutes).append(this.seconds);
@@ -16,6 +28,19 @@ var Clock = function(div, radius) {
 };
 
 Clock.prototype = {
+  position: function(angle, radius) {
+    var radians = (angle * Math.PI) / 180;
+    var x = Math.sin(radians) * radius;
+    var y = -Math.cos(radians) * radius;
+
+    return {
+      left: x + 'px',
+      top: y + 'px',
+      '-moz-transform': 'rotate(' + angle + 'deg)',
+      '-webkit-transform': 'rotate(' + angle + 'deg)'
+    };
+  },
+
   start: function() {
     var self = this;
 
@@ -25,7 +50,7 @@ Clock.prototype = {
     // One for later.
     this.timer = setInterval(function() {
       $().trigger('clock.tick', [self]);
-    }, 1000);
+    }, 25);
   },
 
   stop: function() {
@@ -37,23 +62,12 @@ Clock.prototype = {
     var h = now.getHours();
     var m = now.getMinutes();
     var s = now.getSeconds();
+    var hd = ((h % 12) + (m / 60)) * 30;
+    var md = (m + (s / 60)) * 6;
+    var sd = (s + (now.getMilliseconds() / 1000)) * 6;
 
-    var position = function(angle, radius) {
-      var radians = (angle * Math.PI) / 180;
-      var x = Math.sin(radians) * radius;
-      var y = -Math.cos(radians) * radius;
-
-      return {
-        left: x + 'px',
-        position: 'absolute',
-        top: y + 'px',
-        '-webkit-transform': 'rotate(' + angle + 'deg)',
-        '-webkit-transform-origin': 'center'
-      };
-    }
-
-    this.hours.text(h).css(position((h % 12) * 30, this.radius));
-    this.minutes.text(m).css(position(m * 6, this.radius - 60));
-    this.seconds.text(s).css(position(s * 6, this.radius - 110));
+    this.hours.text(h).css(this.position(hd, this.radius));
+    this.minutes.text(m).css(this.position(md, this.radius * 0.8));
+    this.seconds.text(s).css(this.position(sd, this.radius * 0.67));
   }
 }
