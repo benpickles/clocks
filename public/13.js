@@ -58,7 +58,6 @@ Clock.prototype = {
     this.canvas.beginPath();
     this.canvas.moveTo(this.radius, this.radius);
     this.canvas.arc(this.radius, this.radius, sr, adjust, sa + adjust);
-    this.canvas.closePath();
     this.canvas.fillStyle = '#CCCCCC';
     this.canvas.fill();
 
@@ -66,7 +65,6 @@ Clock.prototype = {
     this.canvas.beginPath();
     this.canvas.moveTo(this.radius, this.radius);
     this.canvas.arc(this.radius, this.radius, mr, adjust, ma + adjust);
-    this.canvas.closePath();
     this.canvas.fillStyle = '#999999';
     this.canvas.fill();
 
@@ -74,8 +72,9 @@ Clock.prototype = {
     this.canvas.beginPath();
     this.canvas.moveTo(this.radius, this.radius);
     this.canvas.arc(this.radius, this.radius, hr, adjust, ha + adjust);
-    this.canvas.closePath();
     this.canvas.fillStyle = '#666666';
     this.canvas.fill();
+
+    this.canvas.closePath();
   }
 }
