@@ -58,21 +58,21 @@ Clock.prototype = {
     this.canvas.beginPath();
     this.canvas.moveTo(this.radius, this.radius);
     this.canvas.arc(this.radius, this.radius, sr, adjust, sa + adjust);
-    this.canvas.fillStyle = '#CCCCCC';
+    this.canvas.fillStyle = '#000099';
     this.canvas.fill();
 
     // Minutes.
     this.canvas.beginPath();
     this.canvas.moveTo(this.radius, this.radius);
     this.canvas.arc(this.radius, this.radius, mr, adjust, ma + adjust);
-    this.canvas.fillStyle = '#999999';
+    this.canvas.fillStyle = '#FFFFFF';
     this.canvas.fill();
 
     // Hours.
     this.canvas.beginPath();
     this.canvas.moveTo(this.radius, this.radius);
     this.canvas.arc(this.radius, this.radius, hr, adjust, ha + adjust);
-    this.canvas.fillStyle = '#666666';
+    this.canvas.fillStyle = '#CC0033';
     this.canvas.fill();
 
     this.canvas.closePath();
