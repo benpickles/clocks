@@ -25,9 +25,9 @@ svg.selectAll('text')
     y: RECT_SIDE / 2
   })
 
-var updater = function(selection, handLength) {
-  var hand = selection.filter('path')
-    , tip = selection.filter('g')
+var updater = function(className, handLength) {
+  var hand = svg.select('path.' + className)
+    , tip = svg.select('g.' + className)
     , text = tip.select('text')
 
   return function(radianCount, number) {
@@ -63,9 +63,9 @@ var updater = function(selection, handLength) {
   }
 }
 
-var updateHours   = updater(svg.selectAll('.hours'),   100)
-  , updateMinutes = updater(svg.selectAll('.minutes'), 150)
-  , updateSeconds = updater(svg.selectAll('.seconds'), 200)
+var updateHours   = updater('hours',   100)
+  , updateMinutes = updater('minutes', 150)
+  , updateSeconds = updater('seconds', 200)
 
 var update = function(date) {
   var hours = date.getHours()
