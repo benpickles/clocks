@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Clock</title>
+<style>
+  path {
+    fill: transparent;
+    stroke: #888;
+  }
+
+  text {
+    alignment-baseline: central;
+    fill: #666;
+    font-family: Helvetica, Arial;
+    text-anchor: middle;
+  }
+
+  rect {
+    fill: #ffe;
+    stroke: #888;
+  }
+</style>
+</head>
+<body>
+<svg>
+  <path class="seconds"></path>
+  <g class="seconds">
+    <rect></rect>
+    <text></text>
+  </g>
+
+  <path class="minutes"></path>
+  <g class="minutes">
+    <rect></rect>
+    <text></text>
+  </g>
+
+  <path class="hours"></path>
+  <g class="hours">
+    <rect></rect>
+    <text></text>
+  </g>
+</svg>
+<script src="d3.min.js"></script>
+<script src="5.js"></script>
+</body>
+</html>
