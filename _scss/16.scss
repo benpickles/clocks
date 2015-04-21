@@ -1,0 +1,62 @@
+$duration: 100ms;
+$size: 150px;
+
+body {
+  margin: 0;
+  text-align: center;
+}
+
+#container {
+  height: $size * 2;
+  margin: 20px auto;
+  position: relative;
+  width: $size * 2;
+}
+
+.hand {
+  color: #444;
+  font-family: sans-serif;
+  font-size: 14px;
+  height: 2px;
+  left: $size;
+  position: absolute;
+  text-align: right;
+  top: $size;
+  transform-origin: 0 50%;
+  transition: transform $duration;
+}
+
+.hours {
+  background: #f00;
+  width: $size - 40px;
+}
+
+.minutes {
+  background: #f70;
+  width: $size - 20px;
+}
+
+.seconds {
+  background: #fc0;
+  width: $size;
+}
+
+// Special case to ensure that the hand travels in a clockwise direction
+// instead of travelling "back in time" to the zero mark.
+.angle-0 {
+  animation-duration: $duration;
+  animation-name: zero;
+  transform: rotate(-90deg);
+}
+
+@keyframes zero {
+  from {
+    transform: rotate(-96deg);
+  }
+}
+
+@for $i from 1 through 60 {
+  .angle-#{$i * 6} {
+    transform: rotate(#{($i * 6) - 90}deg);
+  }
+}
