@@ -1,0 +1,27 @@
+{
+  "name": "clocks",
+  "version": "1.0.0",
+  "description": "",
+  "main": "14.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/benpickles/clocks.git"
+  },
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/benpickles/clocks/issues"
+  },
+  "homepage": "https://github.com/benpickles/clocks",
+  "devDependencies": {
+    "autoprefixer": "^5.1.1",
+    "node-sass": "^2.1.1",
+    "react-tools": "^0.13.2"
+  },
+  "dependencies": {
+    "react": "^0.13.2"
+  }
+}
