@@ -1,0 +1,48 @@
+$margin: 5px;
+$padding: 20px;
+$width: 200px;
+
+body {
+  font-family: Helvetica, Arial, sans-serif;
+  font-size: 14px;
+  margin: $margin;
+
+  // Prevent scrolling to see a clock's right-hand margin.
+  overflow: hidden;
+
+  text-align: center;
+}
+
+.header {
+  font-size: 24px;
+  margin: 0.5em 0;
+}
+
+.clocks {
+  display: flex;
+  flex-wrap: wrap;
+  font-size: 18px;
+  justify-content: center;
+  margin: 0 (-$margin) 0 0;
+}
+
+.clock {
+  background: #eee;
+  color: #333;
+
+  // Take padding into account.
+  flex: 1 0 ($width - $padding * 2);
+
+  margin: $margin $margin 0 0;
+  max-width: $width * 2;
+  padding: $padding;
+  text-decoration: none;
+
+  &:hover {
+    background: #ddd;
+  }
+}
+
+.links {
+  margin: 1em 0;
+}

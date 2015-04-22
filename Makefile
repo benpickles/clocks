@@ -2,7 +2,7 @@ AUTOPREFIXER=./node_modules/.bin/autoprefixer
 JSX=./node_modules/.bin/jsx --cache-dir=tmp
 SASS=./node_modules/.bin/node-sass
 
-ALL=css/16.css js/16.js
+ALL=css/home.css css/16.css js/16.js
 
 all: $(ALL)
 
