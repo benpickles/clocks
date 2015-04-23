@@ -56,7 +56,7 @@ body {
 }
 
 @for $i from 1 through 60 {
-  .angle-#{$i * 6} {
+  .angle-#{$i} {
     transform: rotate(#{($i * 6) - 90}deg);
   }
 }

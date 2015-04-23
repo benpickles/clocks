@@ -4,12 +4,9 @@ var Clock = React.createClass({
       , hours = date.getHours()
       , minutes = date.getMinutes()
       , seconds = date.getSeconds()
-      , hoursAngle = Math.round((hours % 12 / 12) * 360)
-      , minutesAngle = Math.round((minutes / 6) * 36)
-      , secondsAngle = Math.round((seconds / 6) * 36)
-      , hoursClassName = ['hand', 'hours', 'angle-' + hoursAngle].join(' ')
-      , minutesClassName = ['hand', 'minutes', 'angle-' + minutesAngle].join(' ')
-      , secondsClassName = ['hand', 'seconds', 'angle-' + secondsAngle].join(' ')
+      , hoursClassName = ['hand', 'hours', 'angle-' + (hours % 12 * 5)].join(' ')
+      , minutesClassName = ['hand', 'minutes', 'angle-' + minutes].join(' ')
+      , secondsClassName = ['hand', 'seconds', 'angle-' + seconds].join(' ')
 
     return (
       <div>
