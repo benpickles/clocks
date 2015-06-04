@@ -6,7 +6,7 @@ ALL=css/home.css css/16.css js/16.js
 
 all: $(ALL)
 
-js/%.js: _jsx/%.jsx
+js/%.js: _js/%.js
 	$(JSX) $< > $@
 
 css/%.css: _scss/%.scss
