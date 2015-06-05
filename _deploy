@@ -1,0 +1,16 @@
+#!/usr/bin/env sh
+
+set -e
+
+DATE="`date '+%Y-%m-%d %H:%M:%S UTC'`"
+
+# Config (no user details prevents commit).
+git config user.email "travis@example.com"
+git config user.name "Travis CI"
+
+# Commit (force-add .gitignore-d directories).
+git add --force css js
+git commit -m "Build $DATE."
+
+# Push to GitHub Pages.
+git push --force "$REPO_URL" HEAD:gh-pages > /dev/null 2>&1
