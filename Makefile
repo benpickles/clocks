@@ -1,7 +1,10 @@
 AUTOPREFIXER=./node_modules/.bin/autoprefixer
 JSX=./node_modules/.bin/jsx --cache-dir=tmp --harmony
+NODEMON=./node_modules/.bin/nodemon -e js,scss --quiet
 SASS=./node_modules/.bin/node-sass
 UGLIFY=./node_modules/.bin/uglifyjs --compress --mangle
+
+default: watch
 
 build: prepare css js
 
@@ -21,4 +24,7 @@ js/%.js: _js/%.js
 prepare:
 	@mkdir -p css js
 
-.PHONY: clean prepare
+watch:
+	$(NODEMON) --exec "make build"
+
+.PHONY: clean prepare watch
