@@ -1,5 +1,5 @@
 var Clock = React.createClass({
-  render: function() {
+  render() {
     var date = this.props.date
       , hours = date.getHours()
       , minutes = date.getMinutes()

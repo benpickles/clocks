@@ -1,5 +1,5 @@
 AUTOPREFIXER=./node_modules/.bin/autoprefixer
-JSX=./node_modules/.bin/jsx --cache-dir=tmp
+JSX=./node_modules/.bin/jsx --cache-dir=tmp --harmony
 SASS=./node_modules/.bin/node-sass
 
 build: prepare css js
