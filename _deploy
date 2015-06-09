@@ -5,7 +5,7 @@ set -e
 DATE="`date '+%Y-%m-%d %H:%M:%S UTC'`"
 
 # Config (no user details prevents commit).
-git config user.email "travis@example.com"
+git config user.email "benpickles@users.noreply.github.com"
 git config user.name "Travis CI"
 
 # Commit (force-add .gitignore-d directories).
