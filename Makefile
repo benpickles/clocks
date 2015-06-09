@@ -1,6 +1,7 @@
 AUTOPREFIXER=./node_modules/.bin/autoprefixer
 JSX=./node_modules/.bin/jsx --cache-dir=tmp --harmony
 SASS=./node_modules/.bin/node-sass
+UGLIFY=./node_modules/.bin/uglifyjs --compress --mangle
 
 build: prepare css js
 
@@ -15,7 +16,7 @@ css/%.css: _scss/%.scss
 js: js/16.js
 
 js/%.js: _js/%.js
-	$(JSX) $< > $@
+	$(JSX) $< | $(UGLIFY) > $@
 
 prepare:
 	@mkdir -p css js

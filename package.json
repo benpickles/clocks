@@ -19,7 +19,8 @@
   "devDependencies": {
     "autoprefixer": "^5.1.1",
     "node-sass": "^2.1.1",
-    "react-tools": "^0.13.2"
+    "react-tools": "^0.13.2",
+    "uglify-js": "^2.4.23"
   },
   "dependencies": {
     "react": "^0.13.2"
