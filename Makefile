@@ -18,6 +18,6 @@ js/%.js: _js/%.js
 	$(JSX) $< > $@
 
 prepare:
-	mkdir -p css js
+	@mkdir -p css js
 
 .PHONY: clean prepare
