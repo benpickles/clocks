@@ -1,0 +1,27 @@
+body {
+  background: #fff;
+  margin: 0;
+  text-align: center;
+}
+
+#clock {
+  font-family: Helvetica, Arial, sans-serif;
+  font-weight: bold;
+  letter-spacing: -0.2em;
+  position: relative;
+  margin: 50px auto;
+  width: 500px;
+
+  .hours {
+    color: #000;
+  }
+
+  .minutes {
+    color: #444;
+  }
+
+  .seconds {
+    color: #888;
+    font-size: 40px;
+  }
+}

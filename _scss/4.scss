@@ -1,0 +1,21 @@
+body {
+  margin: 0;
+  text-align: center;
+}
+
+#clock {
+  border: 1px solid #eee;
+  margin: 100px auto 0;
+}
+
+#pixel {
+  background: #000;
+  height: 1px;
+  width: 1px;
+}
+
+#text {
+  font-family: Helvetica, Arial, sans-serif;
+  font-size: 9px;
+  margin: 1px 2px;
+}

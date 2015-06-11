@@ -1,0 +1,31 @@
+body {
+  background: #fff;
+  margin: 0;
+  text-align: center;
+}
+
+#clock {
+  color: #EEE;
+  font-family: Helvetica, Arial, sans-serif;
+  font-size: 11px;
+  margin: 100px auto 0;
+  position: relative;
+  width: 400px;
+
+  span {
+    min-width: 1em;
+    padding: 1px 2px;
+    position: absolute;
+    text-align: center;
+  }
+
+  .past {
+    background: #eee;
+    color: #ddd;
+  }
+
+  .current {
+    background: #666;
+    color: #fff;
+  }
+}
