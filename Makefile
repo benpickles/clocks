@@ -16,6 +16,9 @@ css: css/home.css css/16.css
 css/%.css: _scss/%.scss
 	cat $< | $(SASS) | $(AUTOPREFIXER) > $@
 
+ga: $(shell git ls-files ./*.html | grep -v "^_")
+	for i in $^; do ./_ga $$i; done
+
 js: js/16.js
 
 js/%.js: _js/%.js
@@ -27,4 +30,4 @@ prepare:
 watch:
 	$(NODEMON) --exec "make build"
 
-.PHONY: clean prepare watch
+.PHONY: clean ga prepare watch

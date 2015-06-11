@@ -1,0 +1,10 @@
+#!/usr/bin/env sh
+
+set -e
+
+# I can't seem to insert the contents of a file *before* a match with `sed`
+# so I'm resorting to inserting at a particular line.
+NUMBER=`sed -n '/<\/head>/=' "$1"`
+NUMBER=$(expr $NUMBER - 1)
+
+sed -i "${NUMBER}r _ga.html" "$1"
