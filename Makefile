@@ -13,7 +13,7 @@ default: watch
 build: css js
 
 clean:
-	rm -fr css js
+	rm -fr css js tmp
 
 css: $(CSS)
 
