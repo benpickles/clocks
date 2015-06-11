@@ -6,7 +6,7 @@ UGLIFY=./node_modules/.bin/uglifyjs --compress --mangle
 
 default: watch
 
-build: prepare css js
+build: css js
 
 clean:
 	rm -fr css js
@@ -14,6 +14,7 @@ clean:
 css: css/home.css css/16.css
 
 css/%.css: _scss/%.scss
+	@mkdir -p css
 	cat $< | $(SASS) | $(AUTOPREFIXER) > $@
 
 ga: $(shell git ls-files ./*.html | grep -v "^_")
@@ -22,12 +23,10 @@ ga: $(shell git ls-files ./*.html | grep -v "^_")
 js: js/16.js
 
 js/%.js: _js/%.js
+	@mkdir -p js
 	$(JSX) $< | $(UGLIFY) > $@
-
-prepare:
-	@mkdir -p css js
 
 watch:
 	$(NODEMON) --exec "make build"
 
-.PHONY: clean ga prepare watch
+.PHONY: clean ga watch
