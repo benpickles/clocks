@@ -3,6 +3,7 @@ language: node_js
 script:
   - make clean
   - make build
+  - make ga
 
 after_success:
   - test $TRAVIS_BRANCH == "master" && ./_deploy
