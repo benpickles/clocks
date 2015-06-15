@@ -1,10 +1,12 @@
 body {
+  background: #dddde2;
   margin: 0;
   text-align: center;
 }
 
 .clock {
-  border: 1px solid #eee;
+  background: #fff;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
   height: 120px;
   margin: 100px auto 0;
   position: relative;
@@ -19,8 +21,14 @@ body {
 }
 
 .text {
+  box-sizing: border-box;
+  display: block;
   font-family: Helvetica, Arial, sans-serif;
   font-size: 9px;
-  margin: 1px 2px;
+  height: 10px;
+  overflow: hidden;
+  padding: 0 2px;
   position: absolute;
+  text-align: left;
+  width: 60px;
 }

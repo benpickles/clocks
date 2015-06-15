@@ -6,15 +6,31 @@ var Clock = React.createClass({
       + date.getSeconds()
     var x = Math.floor(seconds / 120)
     var y = seconds % 120
-    var style = {
+
+    var pixelStyle = {
       left: x + 'px',
       top: y + 'px',
     }
 
+    var textStyle = {}
+
+    if (x > 660) {
+      textStyle.left = (x - 60) + 'px'
+      textStyle.textAlign = 'right'
+    } else {
+      textStyle.left = pixelStyle.left
+    }
+
+    if (y > 110) {
+      textStyle.top = (y - 10) + 'px'
+    } else {
+      textStyle.top = pixelStyle.top
+    }
+
     return (
       <div className="clock">
-        <span className="pixel" style={style}></span>
-        <span className="text" style={style}>{seconds}/86400</span>
+        <span className="text" style={textStyle}>{seconds}/86400</span>
+        <span className="pixel" style={pixelStyle}></span>
       </div>
     )
   }
