@@ -3,19 +3,24 @@ body {
   text-align: center;
 }
 
-#clock {
+.clock {
   border: 1px solid #eee;
+  height: 120px;
   margin: 100px auto 0;
+  position: relative;
+  width: 720px;
 }
 
-#pixel {
+.pixel {
   background: #000;
   height: 1px;
+  position: absolute;
   width: 1px;
 }
 
-#text {
+.text {
   font-family: Helvetica, Arial, sans-serif;
   font-size: 9px;
   margin: 1px 2px;
+  position: absolute;
 }
