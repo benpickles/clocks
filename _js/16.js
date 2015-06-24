@@ -29,7 +29,7 @@ var currentSeconds
 
 var update = function() {
   var now = new Date
-    , seconds = Math.floor(now.getTime() / 1000)
+    , seconds = Math.round(now.getTime() / 1000)
 
   // Only render once per second.
   if (seconds != currentSeconds) {
