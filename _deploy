@@ -9,7 +9,7 @@ git config user.email "benpickles@users.noreply.github.com"
 git config user.name "Travis CI"
 
 # Commit (force-add .gitignore-d directories).
-git add --force css js
+git add --force css js *.html
 git commit -m "Build $DATE."
 
 # Push to GitHub Pages.
