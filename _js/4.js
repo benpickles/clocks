@@ -1,18 +1,20 @@
-var Clock = React.createClass({
+import React from 'react'
+
+class Clock extends React.Component {
   render() {
-    var date = this.props.date
-    var seconds = (date.getHours() * 3600)
+    const date = this.props.date
+    const seconds = (date.getHours() * 3600)
       + (date.getMinutes() * 60)
       + date.getSeconds()
-    var x = Math.floor(seconds / 120)
-    var y = seconds % 120
+    const x = Math.floor(seconds / 120)
+    const y = seconds % 120
 
-    var pixelStyle = {
+    const pixelStyle = {
       left: x + 'px',
       top: y + 'px',
     }
 
-    var textStyle = {}
+    const textStyle = {}
 
     if (x > 660) {
       textStyle.left = (x - 60) + 'px'
@@ -34,20 +36,20 @@ var Clock = React.createClass({
       </div>
     )
   }
-})
+}
 
-var render = function(date) {
+const render = function(date) {
   React.render(
     <Clock date={date} />,
     document.getElementById('clock')
   )
 }
 
-var currentSeconds
+let currentSeconds
 
-var update = function() {
-  var now = new Date
-    , seconds = Math.floor(now.getTime() / 1000)
+const update = function() {
+  const now = new Date
+  const seconds = Math.floor(now.getTime() / 1000)
 
   // Only render once per second.
   if (seconds != currentSeconds) {

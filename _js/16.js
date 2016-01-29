@@ -1,12 +1,14 @@
-var Clock = React.createClass({
+import React from 'react'
+
+class Clock extends React.Component {
   render() {
-    var date = this.props.date
-      , hours = date.getHours()
-      , minutes = date.getMinutes()
-      , seconds = date.getSeconds()
-      , hoursClassName = ['hand', 'hours', 'angle-' + (hours % 12 * 5)].join(' ')
-      , minutesClassName = ['hand', 'minutes', 'angle-' + minutes].join(' ')
-      , secondsClassName = ['hand', 'seconds', 'angle-' + seconds].join(' ')
+    const date = this.props.date
+    const hours = date.getHours()
+    const minutes = date.getMinutes()
+    const seconds = date.getSeconds()
+    const hoursClassName = ['hand', 'hours', `angle-${hours % 12 * 5}`].join(' ')
+    const minutesClassName = ['hand', 'minutes', `angle-${minutes}`].join(' ')
+    const secondsClassName = ['hand', 'seconds', `angle-${seconds}`].join(' ')
 
     return (
       <div>
@@ -16,20 +18,20 @@ var Clock = React.createClass({
       </div>
     )
   }
-})
+}
 
-var render = function(date) {
+const render = function(date) {
   React.render(
     <Clock date={date} />,
     document.getElementById('container')
   )
 }
 
-var currentSeconds
+let currentSeconds
 
-var update = function() {
-  var now = new Date
-    , seconds = Math.round(now.getTime() / 1000)
+const update = function() {
+  const now = new Date
+  const seconds = Math.round(now.getTime() / 1000)
 
   // Only render once per second.
   if (seconds != currentSeconds) {

@@ -1,4 +1,4 @@
-BABEL=./node_modules/.bin/babel
+BROWSERIFY=./node_modules/.bin/browserify -t [babelify]
 NODEMON=./node_modules/.bin/nodemon -e js,scss --quiet
 POSTCSS=./node_modules/.bin/postcss --use autoprefixer
 SASS=./node_modules/.bin/node-sass --output-style=compressed
@@ -28,7 +28,7 @@ js: $(JS)
 
 js/%.js: _js/%.js
 	@mkdir -p js
-	$(BABEL) $< | $(UGLIFY) > $@
+	$(BROWSERIFY) -e $< | $(UGLIFY) > $@
 
 watch:
 	$(NODEMON) --exec "make build"
