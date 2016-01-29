@@ -10,21 +10,21 @@ class Clock extends React.Component {
     const y = seconds % 120
 
     const pixelStyle = {
-      left: x + 'px',
-      top: y + 'px',
+      left: x,
+      top: y,
     }
 
     const textStyle = {}
 
     if (x > 660) {
-      textStyle.left = (x - 60) + 'px'
+      textStyle.left = x - 60
       textStyle.textAlign = 'right'
     } else {
       textStyle.left = pixelStyle.left
     }
 
     if (y > 110) {
-      textStyle.top = (y - 10) + 'px'
+      textStyle.top = y - 10
     } else {
       textStyle.top = pixelStyle.top
     }
