@@ -1,4 +1,5 @@
 import React from 'react'
+import ReactDOM from 'react-dom'
 
 class Clock extends React.Component {
   render() {
@@ -21,7 +22,7 @@ class Clock extends React.Component {
 }
 
 const render = function(date) {
-  React.render(
+  ReactDOM.render(
     <Clock date={date} />,
     document.getElementById('container')
   )
