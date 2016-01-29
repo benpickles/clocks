@@ -2,6 +2,12 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 
 class Clock extends React.Component {
+  shouldComponentUpdate(nextProps) {
+    const nextSeconds = Math.round(nextProps.date.getTime() / 1000)
+    const seconds = Math.round(this.props.date.getTime() / 1000)
+    return nextSeconds != seconds
+  }
+
   render() {
     const date = this.props.date
     const seconds = (date.getHours() * 3600)
@@ -46,18 +52,8 @@ const render = function(date) {
   )
 }
 
-let currentSeconds
-
 const update = function() {
-  const now = new Date
-  const seconds = Math.floor(now.getTime() / 1000)
-
-  // Only render once per second.
-  if (seconds != currentSeconds) {
-    render(now)
-    currentSeconds = seconds
-  }
-
+  render(new Date)
   requestAnimationFrame(update)
 }
 
