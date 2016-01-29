@@ -1,4 +1,4 @@
-JSX=./node_modules/.bin/jsx --cache-dir=tmp --harmony
+BABEL=./node_modules/.bin/babel
 NODEMON=./node_modules/.bin/nodemon -e js,scss --quiet
 POSTCSS=./node_modules/.bin/postcss --use autoprefixer
 SASS=./node_modules/.bin/node-sass --output-style=compressed
@@ -28,7 +28,7 @@ js: $(JS)
 
 js/%.js: _js/%.js
 	@mkdir -p js
-	$(JSX) $< | $(UGLIFY) > $@
+	$(BABEL) $< | $(UGLIFY) > $@
 
 watch:
 	$(NODEMON) --exec "make build"
