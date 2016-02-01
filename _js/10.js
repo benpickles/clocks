@@ -47,7 +47,7 @@ class Clock extends React.Component {
     g = Math.round(g * 255)
     b = Math.round(b * 255)
 
-    return 'rgb(' + [r, g, b].join(',') + ')'
+    return `rgb(${r}, ${g}, ${b})`
   }
 
   colouredDiv(seconds, text) {

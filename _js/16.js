@@ -13,9 +13,9 @@ class Clock extends React.Component {
     const hours = date.getHours()
     const minutes = date.getMinutes()
     const seconds = date.getSeconds()
-    const hoursClassName = ['hand', 'hours', `angle-${hours % 12 * 5}`].join(' ')
-    const minutesClassName = ['hand', 'minutes', `angle-${minutes}`].join(' ')
-    const secondsClassName = ['hand', 'seconds', `angle-${seconds}`].join(' ')
+    const hoursClassName = `hand hours angle-${hours % 12 * 5}`
+    const minutesClassName = `hand minutes angle-${minutes}`
+    const secondsClassName = `hand seconds angle-${seconds}`
 
     return (
       <div>
