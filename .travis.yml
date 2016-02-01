@@ -11,7 +11,3 @@ script:
 
 after_success:
   - test $TRAVIS_BRANCH == "master" && ./_deploy
-
-env:
-  global:
-    secure: NPZFb3ONYdbYLCLFJDIe3LNXz71/cSB1xV/WOPlv2Gb8Upbd85tj0t5dsDpg+DF+LE076DRtHLoxHY+P5lF4RPJ23WT+T36WbJcSot3ZaidNAgc+GuCLloYIjXEzqLCtaZXK+PRaU0JS1lFL5S/FYDnJ59cjBExvZqptufoPzto=
