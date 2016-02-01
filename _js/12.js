@@ -1,4 +1,4 @@
-var Clock = function(div, radius) {
+var Clock = window.Clock = function(div, radius) {
   this.radius = radius;
   this.timer = null;
 
