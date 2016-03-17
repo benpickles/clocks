@@ -9,7 +9,7 @@ cache:
 
 script:
   - make clean
-  - make build
+  - NODE_ENV=production make build
   - make ga
 
 after_success:
