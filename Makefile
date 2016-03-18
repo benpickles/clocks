@@ -2,7 +2,7 @@ BROWSERIFY=./node_modules/.bin/browserify -t [babelify]
 NODEMON=./node_modules/.bin/nodemon --ext js,scss --ignore ./css/ --ignore ./js/ --quiet
 POSTCSS=./node_modules/.bin/postcss --use autoprefixer
 SASS=./node_modules/.bin/node-sass --output-style=compressed
-UGLIFY=./node_modules/.bin/uglifyjs --compress --mangle
+UGLIFY=./node_modules/.bin/uglifyjs --compress warnings=false --mangle
 
 _SCSS=$(shell ls _scss)
 CSS=$(addprefix css/, $(_SCSS:.scss=.css))
