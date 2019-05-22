@@ -1,0 +1,24 @@
+#!/usr/bin/env node
+
+const fs = require('fs')
+const { JSDOM } = require('jsdom')
+
+const cwd = process.cwd()
+const dir = `${cwd}/dist/clocks`
+const ga = fs.readFileSync(`${cwd}/src/ga.html`)
+const gaScript = new JSDOM(ga).window.document.querySelector('script')
+
+const insertGA = name => {
+  const path = `${dir}/${name}`
+  const content = fs.readFileSync(path)
+  const dom = new JSDOM(content)
+
+  dom.window.document.querySelector('body').appendChild(gaScript)
+
+  fs.writeFileSync(path, dom.window.document.documentElement.outerHTML)
+}
+
+fs
+  .readdirSync(dir)
+  .filter(name => name.endsWith('.html'))
+  .forEach(insertGA)

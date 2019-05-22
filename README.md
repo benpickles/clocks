@@ -1,9 +1,7 @@
 # Clocks
 
-[![Build Status](https://travis-ci.org/benpickles/clocks.svg?branch=master)](https://travis-ci.org/benpickles/clocks)
-
-Time experiments.
+Clock experiments viewable at [benpickles.com/clocks](https://www.benpickles.com/clocks/).
 
 ## Development
 
-Run `npm install` then `make` and open up `index.html` in your browser of choice (with `file://` - no web server required).
+Run `yarn install` then `yarn start` and open <http://localhost:1234>.
