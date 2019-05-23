@@ -1,3 +1,5 @@
+import { select } from 'd3-selection'
+
 var DIAMETER = 400
   , RADIUS = DIAMETER / 2
   , RECT_SIDE = 18
@@ -6,24 +8,29 @@ var DIAMETER = 400
   , SECOND_PORTION = 2 / 3600
   , MINUTE_PORTION = 2 / 720
 
-var svg = d3.select('svg')
-  .attr({
-    width: DIAMETER + RECT_SIDE,
-    height: DIAMETER + RECT_SIDE
-  })
+const svg = select('body')
+  .append('svg')
+    .attr('width', DIAMETER + RECT_SIDE)
+    .attr('height', DIAMETER + RECT_SIDE)
 
-svg.selectAll('rect')
-  .attr({
-    height: RECT_SIDE,
-    width: RECT_SIDE
-  })
+const appendHand = name => {
+  svg.append('path').attr('class', name)
 
-svg.selectAll('text')
-  .attr({
-    'font-size': (RECT_SIDE * 0.6) + 'px',
-    x: RECT_SIDE / 2,
-    y: RECT_SIDE / 2
-  })
+  const g = svg.append('g').attr('class', name)
+
+  g.append('rect')
+    .attr('height', RECT_SIDE)
+    .attr('width', RECT_SIDE)
+
+  g.append('text')
+    .attr('font-size', (RECT_SIDE * 0.6) + 'px')
+    .attr('x', RECT_SIDE / 2)
+    .attr('y', RECT_SIDE / 2)
+}
+
+appendHand('seconds')
+appendHand('minutes')
+appendHand('hours')
 
 var updater = function(className, handLength) {
   var hand = svg.select('path.' + className)
