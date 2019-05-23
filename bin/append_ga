@@ -6,14 +6,15 @@ const { JSDOM } = require('jsdom')
 const cwd = process.cwd()
 const dir = `${cwd}/dist/clocks`
 const ga = fs.readFileSync(`${cwd}/src/ga.html`)
-const gaScript = new JSDOM(ga).window.document.querySelector('script')
+const gaScripts = new JSDOM(ga).window.document.querySelectorAll('script')
 
 const insertGA = name => {
   const path = `${dir}/${name}`
   const content = fs.readFileSync(path)
   const dom = new JSDOM(content)
+  const head = dom.window.document.querySelector('head')
 
-  dom.window.document.querySelector('body').appendChild(gaScript)
+  gaScripts.forEach(script => head.appendChild(script))
 
   fs.writeFileSync(path, dom.window.document.documentElement.outerHTML)
 }
