@@ -1,54 +1,50 @@
-import React, { Component, Fragment } from 'react'
-import { render } from 'react-dom'
-import './16.scss'
+const hoursElem = document.querySelector('.hand.hours')
+const minutesElem = document.querySelector('.hand.minutes')
+const secondsElem = document.querySelector('.hand.seconds')
 
-class Timer extends Component {
-  constructor() {
-    super()
-    this.state = { date: new Date }
+let lastSeconds = null
+
+const render = date => {
+  const seconds = date.getSeconds()
+
+  if (seconds === lastSeconds) {
+    return
+  } else {
+    lastSeconds = seconds
   }
 
-  componentDidMount() {
-    this.updateDate()
-  }
+  const hours = date.getHours()
+  const minutes = date.getMinutes()
 
-  updateDate() {
-    this.setState({ date: new Date })
-    requestAnimationFrame(() => this.updateDate())
-  }
+  const hoursClassName = `hand hours angle-${hours % 12 * 5}`
+  const minutesClassName = `hand minutes angle-${minutes}`
+  const secondsClassName = `hand seconds angle-${seconds}`
 
-  render() {
-    return this.props.children(this.state.date)
+  hoursElem.setAttribute('class', hoursClassName)
+  hoursElem.textContent = hours
+
+  minutesElem.setAttribute('class', minutesClassName)
+  minutesElem.textContent = minutes
+
+  secondsElem.setAttribute('class', secondsClassName)
+  secondsElem.textContent = seconds
+}
+
+const loop = () => {
+  render(new Date)
+
+  if (window.play) {
+    requestAnimationFrame(loop)
   }
 }
 
-class Clock extends Component {
-  shouldComponentUpdate(nextProps) {
-    return nextProps.date.getSeconds() !== this.props.date.getSeconds()
-  }
-
-  render() {
-    const date = this.props.date
-    const hours = date.getHours()
-    const minutes = date.getMinutes()
-    const seconds = date.getSeconds()
-    const hoursClassName = `hand hours angle-${hours % 12 * 5}`
-    const minutesClassName = `hand minutes angle-${minutes}`
-    const secondsClassName = `hand seconds angle-${seconds}`
-
-    return (
-      <Fragment>
-        <div className={hoursClassName}>{hours}</div>
-        <div className={minutesClassName}>{minutes}</div>
-        <div className={secondsClassName}>{seconds}</div>
-      </Fragment>
-    )
-  }
+window.start = () => {
+  window.play = true
+  loop()
 }
 
-render(
-  <Timer>
-    {date => <Clock date={date} />}
-  </Timer>,
-  document.getElementById('root')
-)
+window.stop = () => {
+  window.play = false
+}
+
+start()
