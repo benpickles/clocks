@@ -56,8 +56,12 @@ body {
 }
 
 @keyframes zero {
-  from {
+  0% {
     transform: rotate(-96deg);
+  }
+
+  100% {
+    transform: rotate(-90deg);
   }
 }
 
