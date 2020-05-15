@@ -16,7 +16,7 @@ const render = date => {
   const hours = date.getHours()
   const minutes = date.getMinutes()
 
-  const hoursClassName = `hand hours angle-${hours % 12 * 5}`
+  const hoursClassName = `hand hours angle-${(hours % 12) * 5}`
   const minutesClassName = `hand minutes angle-${minutes}`
   const secondsClassName = `hand seconds angle-${seconds}`
 
@@ -31,7 +31,7 @@ const render = date => {
 }
 
 const loop = () => {
-  render(new Date)
+  render(new Date())
 
   if (window.play) {
     requestAnimationFrame(loop)

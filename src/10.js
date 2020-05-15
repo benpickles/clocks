@@ -29,18 +29,18 @@ class Clock extends React.Component {
     let b = 0
 
     switch (Math.floor(seconds / c3)) {
-    case 0:
-      b = c1
-      g = c2
-      break
-    case 1:
-      g = c1
-      r = c2
-      break
-    case 2:
-      r = c1
-      b = c2
-      break
+      case 0:
+        b = c1
+        g = c2
+        break
+      case 1:
+        g = c1
+        r = c2
+        break
+      case 2:
+        r = c1
+        b = c2
+        break
     }
 
     r = Math.round(r * 255)
@@ -56,11 +56,9 @@ class Clock extends React.Component {
     }
 
     return (
-      <div
-        className="colour"
-        key={text}
-        style={style}
-      >{text}</div>
+      <div className="colour" key={text} style={style}>
+        {text}
+      </div>
     )
   }
 
@@ -71,35 +69,28 @@ class Clock extends React.Component {
 
     return (
       <div className="clock">
-        <div className="row">
-          {am}
-        </div>
-        <div className="row current">
-          {current}
-        </div>
-        <div className="row">
-          {pm}
-        </div>
+        <div className="row">{am}</div>
+        <div className="row current">{current}</div>
+        <div className="row">{pm}</div>
       </div>
     )
   }
 
   seconds() {
-    return (this.props.date.getHours() * 3600)
-      + (this.props.date.getMinutes() * 60)
-      + this.props.date.getSeconds()
+    return (
+      this.props.date.getHours() * 3600 +
+      this.props.date.getMinutes() * 60 +
+      this.props.date.getSeconds()
+    )
   }
 }
 
-const render = function(date) {
-  ReactDOM.render(
-    <Clock date={date} />,
-    document.getElementById('container')
-  )
+const render = function (date) {
+  ReactDOM.render(<Clock date={date} />, document.getElementById('container'))
 }
 
-const update = function() {
-  render(new Date)
+const update = function () {
+  render(new Date())
   requestAnimationFrame(update)
 }
 
