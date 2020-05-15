@@ -10,9 +10,8 @@ class Clock extends React.Component {
 
   render() {
     const date = this.props.date
-    const seconds = (date.getHours() * 3600)
-      + (date.getMinutes() * 60)
-      + date.getSeconds()
+    const seconds =
+      date.getHours() * 3600 + date.getMinutes() * 60 + date.getSeconds()
     const x = Math.floor(seconds / 120)
     const y = seconds % 120
 
@@ -38,22 +37,21 @@ class Clock extends React.Component {
 
     return (
       <div className="clock">
-        <span className="text" style={textStyle}>{seconds}/86400</span>
+        <span className="text" style={textStyle}>
+          {seconds}/86400
+        </span>
         <span className="pixel" style={pixelStyle}></span>
       </div>
     )
   }
 }
 
-const render = function(date) {
-  ReactDOM.render(
-    <Clock date={date} />,
-    document.getElementById('clock')
-  )
+const render = function (date) {
+  ReactDOM.render(<Clock date={date} />, document.getElementById('clock'))
 }
 
-const update = function() {
-  render(new Date)
+const update = function () {
+  render(new Date())
   requestAnimationFrame(update)
 }
 

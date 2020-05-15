@@ -13,6 +13,13 @@
   },
   "devDependencies": {
     "jsdom": "^16.2.2",
-    "parcel-bundler": "^1.12.3"
+    "parcel-bundler": "^1.12.3",
+    "prettier": "^2.0.5"
+  },
+  "prettier": {
+    "arrowParens": "avoid",
+    "semi": false,
+    "singleQuote": true,
+    "trailingComma": "es5"
   }
 }
