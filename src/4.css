@@ -1,14 +1,20 @@
+html {
+  height: 100%;
+}
+
 body {
+  align-items: center;
   background: #dddde2;
+  display: flex;
+  height: 100%;
+  justify-content: center;
   margin: 0;
-  text-align: center;
 }
 
 .clock {
   background: #fff;
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
   height: 120px;
-  margin: 100px auto 0;
   position: relative;
   width: 720px;
 }

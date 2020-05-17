@@ -1,16 +1,25 @@
+html {
+  height: 100%;
+}
+
 body {
+  align-items: center;
   background: #fff;
+  display: flex;
+  height: 100%;
+  justify-content: center;
   margin: 0;
-  text-align: center;
 }
 
 #clock {
+  --size: 500px;
+
   font-family: Helvetica, Arial, sans-serif;
   font-weight: bold;
+  height: var(--size);
   letter-spacing: -0.2em;
   position: relative;
-  margin: 50px auto;
-  width: 500px;
+  width: var(--size);
 
   .hours {
     color: #000;
