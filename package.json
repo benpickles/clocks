@@ -2,8 +2,8 @@
   "name": "parcel",
   "private": true,
   "scripts": {
-    "build": "parcel build *.html --public-url /clocks/ --out-dir dist/clocks",
-    "start": "parcel *.html"
+    "build": "NODE_ENV=production ./bin/build",
+    "start": "parcel index.html"
   },
   "dependencies": {
     "d3-selection": "^1.4.1",
@@ -15,6 +15,10 @@
     "jsdom": "^16.2.2",
     "parcel-bundler": "^1.12.3",
     "prettier": "^2.0.5"
+  },
+  "parcel": {
+    "outDir": "dist/clocks",
+    "publicUrl": "/clocks/"
   },
   "prettier": {
     "arrowParens": "avoid",
