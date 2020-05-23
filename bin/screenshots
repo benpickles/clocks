@@ -2,6 +2,8 @@
 
 const Bundler = require('parcel-bundler')
 const Path = require('path')
+const imagemin = require('imagemin')
+const imageminPngquant = require('imagemin-pngquant')
 const puppeteer = require('puppeteer')
 
 const parcelConfig = require('../package.json').parcel
@@ -29,18 +31,26 @@ const customViewports = {
 
     const browser = await puppeteer.launch()
     const page = await browser.newPage()
+    const screenshots = []
 
     for (name of names) {
       const id = Path.basename(name, '.html')
       const pathname = Path.join(options.publicUrl, name)
-      const path = Path.join(__dirname, `../src/images/${id}.png`)
+      const path = Path.join(__dirname, `../tmp/${id}.png`)
 
       await page.setViewport(customViewports[id] || defaultViewport)
       await page.goto(`http://localhost:${port}${pathname}`)
       await page.screenshot({ path })
+
+      screenshots.push(path)
     }
 
     await browser.close()
+
+    await imagemin(screenshots, {
+      destination: Path.join(__dirname, '../src/images'),
+      plugins: [imageminPngquant({ quality: [0.6, 0.8] })],
+    })
 
     process.exit()
   })
