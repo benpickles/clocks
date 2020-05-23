@@ -68,8 +68,8 @@ Clock.prototype = {
     var md = (m + s / 60) * 6
     var sd = (s + now.getMilliseconds() / 1000) * 6
 
-    this.hours.text(h).css(this.position(hd, this.radius))
+    this.hours.text(h).css(this.position(hd, this.radius * 0.66))
     this.minutes.text(m).css(this.position(md, this.radius * 0.8))
-    this.seconds.text(s).css(this.position(sd, this.radius * 0.66))
+    this.seconds.text(s).css(this.position(sd, this.radius))
   },
 }
