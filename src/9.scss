@@ -1,22 +1,35 @@
+html {
+  height: 100%;
+}
+
 body {
+  align-items: center;
   background: #fff;
+  display: flex;
+  height: 100%;
+  justify-content: center;
   margin: 0;
-  text-align: center;
 }
 
 #clock {
   color: #eee;
   font-family: Helvetica, Arial, sans-serif;
   font-size: 11px;
-  margin: 100px auto 0;
+  height: 400px;
   position: relative;
   width: 400px;
 
   span {
-    min-width: 1em;
-    padding: 1px 2px;
+    --size: 15px;
+    --offset: calc(var(--size) / -2);
+
+    align-items: center;
+    display: flex;
+    height: var(--size);
+    justify-content: center;
     position: absolute;
-    text-align: center;
+    transform: translate(var(--offset), var(--offset));
+    width: var(--size);
   }
 
   .past {

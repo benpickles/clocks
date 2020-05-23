@@ -1,0 +1,59 @@
+#!/usr/bin/env node
+
+const Bundler = require('parcel-bundler')
+const Path = require('path')
+const imagemin = require('imagemin')
+const imageminPngquant = require('imagemin-pngquant')
+const puppeteer = require('puppeteer')
+
+const parcelConfig = require('../package.json').parcel
+const entryFiles = Path.join(__dirname, '../index.html')
+const options = {
+  ...parcelConfig,
+  logLevel: 2,
+  watch: false,
+}
+
+const port = 4321
+
+const defaultViewport = { width: 600, height: 600 }
+const customViewports = {
+  4: { width: 800, height: 800 },
+}
+
+;(async function () {
+  const bundler = new Bundler(entryFiles, options)
+
+  bundler.on('bundled', async bundle => {
+    const names = Array.from(bundle.entryAsset.dependencies.values())
+      .map(entry => entry.name)
+      .filter(name => name.endsWith('.html'))
+
+    const browser = await puppeteer.launch()
+    const page = await browser.newPage()
+    const screenshots = []
+
+    for (name of names) {
+      const id = Path.basename(name, '.html')
+      const pathname = Path.join(options.publicUrl, name)
+      const path = Path.join(__dirname, `../tmp/${id}.png`)
+
+      await page.setViewport(customViewports[id] || defaultViewport)
+      await page.goto(`http://localhost:${port}${pathname}`)
+      await page.screenshot({ path })
+
+      screenshots.push(path)
+    }
+
+    await browser.close()
+
+    await imagemin(screenshots, {
+      destination: Path.join(__dirname, '../src/images'),
+      plugins: [imageminPngquant({ quality: [0.6, 0.8] })],
+    })
+
+    process.exit()
+  })
+
+  await bundler.serve(port)
+})()

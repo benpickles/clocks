@@ -1,9 +1,12 @@
-body {
-  background: #9cf;
-  margin: 0;
-  text-align: center;
+html {
+  height: 100%;
 }
 
-#clock {
-  padding-top: 50px;
+body {
+  align-items: center;
+  background: #9cf;
+  display: flex;
+  height: 100%;
+  justify-content: center;
+  margin: 0;
 }

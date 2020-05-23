@@ -1,0 +1,40 @@
+#!/usr/bin/env node
+
+const Bundler = require('parcel-bundler')
+const Path = require('path')
+const fs = require('fs')
+const { JSDOM } = require('jsdom')
+
+const parcelConfig = require('../package.json').parcel
+const entryFiles = Path.join(__dirname, '../index.html')
+const options = {
+  ...parcelConfig,
+  watch: false,
+}
+
+const ga = fs.readFileSync(Path.join(__dirname, '../src/ga.html'))
+const gaScripts = new JSDOM(ga).window.document.querySelectorAll('script')
+
+const insertGA = path => {
+  const content = fs.readFileSync(path)
+  const dom = new JSDOM(content)
+  const head = dom.window.document.querySelector('head')
+
+  gaScripts.forEach(script => head.appendChild(script))
+
+  fs.writeFileSync(path, dom.window.document.documentElement.outerHTML)
+}
+
+;(async function () {
+  const bundler = new Bundler(entryFiles, options)
+
+  bundler.on('bundled', bundle => {
+    Array.from(bundle.childBundles)
+      .filter(({ type }) => type === 'html')
+      .map(({ name }) => name)
+      .concat(bundle.name) // index.html
+      .forEach(insertGA)
+  })
+
+  await bundler.bundle()
+})()

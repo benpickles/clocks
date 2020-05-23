@@ -1,7 +1,0 @@
-#!/usr/bin/env sh
-
-yarn build
-
-echo Inserting Google Analytics
-
-bin/append_ga

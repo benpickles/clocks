@@ -2,8 +2,9 @@
   "name": "parcel",
   "private": true,
   "scripts": {
-    "build": "parcel build *.html --public-url /clocks/ --out-dir dist/clocks",
-    "start": "parcel *.html"
+    "build": "NODE_ENV=production ./bin/build",
+    "screenshots": "./bin/screenshots",
+    "start": "parcel index.html"
   },
   "dependencies": {
     "d3-selection": "^1.4.1",
@@ -12,9 +13,16 @@
     "sass": "^1.26.5"
   },
   "devDependencies": {
+    "imagemin": "^7.0.1",
+    "imagemin-pngquant": "^8.0.0",
     "jsdom": "^16.2.2",
     "parcel-bundler": "^1.12.3",
-    "prettier": "^2.0.5"
+    "prettier": "^2.0.5",
+    "puppeteer": "^3.0.4"
+  },
+  "parcel": {
+    "outDir": "dist/clocks",
+    "publicUrl": "/clocks/"
   },
   "prettier": {
     "arrowParens": "avoid",
