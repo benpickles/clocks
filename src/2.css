@@ -1,0 +1,50 @@
+html,
+body,
+#root {
+  height: 100%;
+}
+
+body {
+  background: #9ea;
+  margin: 0;
+  overflow: hidden;
+}
+
+#root {
+  display: flex;
+  flex-direction: column;
+}
+
+.row {
+  display: flex;
+  flex: 1;
+}
+
+.clock {
+  flex: 1;
+  position: relative;
+  transform: rotate(-90deg);
+}
+
+.hours,
+.minutes,
+.seconds {
+  background: #040;
+  height: 1px;
+  left: 50%;
+  position: absolute;
+  top: 50%;
+  transform-origin: left;
+}
+
+.hours {
+  width: 30%;
+}
+
+.minutes {
+  width: 35%;
+}
+
+.seconds {
+  width: 40%;
+}
