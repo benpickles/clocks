@@ -21,6 +21,8 @@ const customViewports = {
   4: { width: 800, height: 800 },
 }
 
+const includeIds = new Set(process.argv.slice(2))
+
 ;(async function () {
   const bundler = new Bundler(entryFiles, options)
 
@@ -42,7 +44,9 @@ const customViewports = {
       await page.goto(`http://localhost:${port}${pathname}`)
       await page.screenshot({ path })
 
-      screenshots.push(path)
+      if (includeIds.size === 0 || includeIds.has(id)) {
+        screenshots.push(path)
+      }
     }
 
     await browser.close()
