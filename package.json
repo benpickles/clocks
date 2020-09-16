@@ -1,5 +1,5 @@
 {
-  "name": "parcel",
+  "name": "clocks",
   "private": true,
   "scripts": {
     "build": "NODE_ENV=production ./bin/build",
