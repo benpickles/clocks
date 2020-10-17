@@ -1,0 +1,43 @@
+html {
+  height: 100%;
+}
+
+body {
+  height: 100%;
+  margin: 0;
+}
+
+#root {
+  background: #888;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  justify-content: space-between;
+  padding: 10vmax;
+}
+
+#root div {
+  background: rgba(255, 255, 255, 0.5);
+  border-radius: 0.5vh;
+  height: 1vh;
+  margin-left: 6vmin;
+  min-width: 1vh;
+  width: 0;
+}
+
+#root div[title]::before {
+  color: #fff;
+  content: attr(title);
+  display: block;
+  font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  font-size: 6vmin;
+  font-variant-numeric: tabular-nums;
+  font-weight: bold;
+  letter-spacing: -0.2ch;
+  line-height: 0.16; /* Attempt to vertically align with the bar. */
+  opacity: 0.6;
+  margin-left: -4.4ch;
+  text-align: right;
+  width: 4ch;
+}
