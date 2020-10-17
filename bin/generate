@@ -1,0 +1,68 @@
+#!/usr/bin/env node
+
+const Path = require('path')
+const fs = require('fs')
+const prettier = require('prettier')
+const { JSDOM } = require('jsdom')
+
+const root = Path.join(__dirname, '..')
+const indexHtml = Path.join(root, 'index.html')
+const homeDom = new JSDOM(fs.readFileSync(indexHtml))
+const homeDocument = homeDom.window.document
+const firstClockElem = homeDocument.querySelector('a')
+
+const newClockNumber = parseInt(firstClockElem.href) + 1
+const newCssPath = `src/${newClockNumber}.css`
+const newHtmlPath = `${newClockNumber}.html`
+const newImagePath = `src/images/${newClockNumber}.png`
+const newJsPath = `src/${newClockNumber}.js`
+
+fs.copyFileSync(
+  Path.join(root, 'src/template/clock.css'),
+  Path.join(root, newCssPath)
+)
+
+fs.copyFileSync(
+  Path.join(root, 'src/template/clock.js'),
+  Path.join(root, newJsPath)
+)
+
+// Empty screenshot so the home page will compile.
+fs.closeSync(fs.openSync(Path.join(root, newImagePath), 'w'))
+
+const dom = new JSDOM(
+  fs.readFileSync(Path.join(root, 'src/template/clock.html'))
+)
+const document = dom.window.document
+
+document.querySelector('title').textContent = `#${newClockNumber}`
+
+document
+  .querySelector('link[rel="stylesheet"]')
+  .setAttribute('href', newCssPath)
+
+document.querySelector('script').setAttribute('src', newJsPath)
+
+fs.writeFileSync(
+  Path.join(root, newHtmlPath),
+  prettier.format(dom.serialize(), { parser: 'html' })
+)
+
+// Add link to new clock on homepage.
+const newClockElem = firstClockElem.cloneNode(true)
+newClockElem.href = newHtmlPath
+newClockElem.querySelector('img').src = newImagePath
+newClockElem.querySelector('span').textContent = `#${newClockNumber}`
+
+const clocks = homeDocument.querySelector('div')
+clocks.insertBefore(newClockElem, firstClockElem)
+
+// Ensure Prettier doesn't think the links must have no whitespace between them.
+clocks.insertBefore(homeDocument.createTextNode(' '), firstClockElem)
+
+fs.writeFileSync(
+  indexHtml,
+  prettier.format(homeDom.serialize(), { parser: 'html' })
+)
+
+console.log([newHtmlPath, newJsPath, newCssPath].join('\n'))

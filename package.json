@@ -3,7 +3,6 @@
   "private": true,
   "scripts": {
     "build": "NODE_ENV=production ./bin/build",
-    "screenshots": "./bin/screenshots",
     "start": "parcel index.html"
   },
   "dependencies": {
