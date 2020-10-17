@@ -37,4 +37,10 @@ const insertGA = path => {
   })
 
   await bundler.bundle()
+
+  // Redirect to the correct homepage in pull request builds.
+  fs.writeFileSync(
+    Path.join(__dirname, '../dist/index.html'),
+    '<meta content="0;url=/clocks/" http-equiv="refresh">'
+  )
 })()
