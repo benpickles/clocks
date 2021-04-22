@@ -13,7 +13,7 @@
   },
   "devDependencies": {
     "imagemin": "^7.0.1",
-    "imagemin-pngquant": "^9.0.1",
+    "imagemin-pngquant": "^9.0.2",
     "jsdom": "^16.4.0",
     "parcel-bundler": "^1.12.5",
     "prettier": "^2.2.1",
