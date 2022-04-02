@@ -12,10 +12,12 @@
     "sass": "^1.26.10"
   },
   "devDependencies": {
+    "@parcel/transformer-sass": "2.10.0",
     "imagemin": "^7.0.1",
     "imagemin-pngquant": "^9.0.1",
-    "parcel-bundler": "^1.12.5",
+    "parcel": "^2.10.0",
     "prettier": "^2.2.1",
+    "process": "^0.11.10",
     "puppeteer": "^21.3.8"
   },
   "parcel": {
