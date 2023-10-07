@@ -2,25 +2,65 @@ name: Node
 
 on: [push]
 
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
 jobs:
+  build:
+    name: Build
+    runs-on: ubuntu-latest
+    needs: cache_node_modules
+    steps:
+    - uses: actions/checkout@v4
+    - uses: actions/setup-node@v3
+      with:
+        node-version: 14
+        cache: 'yarn'
+    - run: yarn install --frozen-lockfile
+    - run: yarn build
+    - name: Upload artifact
+      uses: actions/upload-pages-artifact@v1
+      if: github.ref == 'refs/heads/main' # Only upload on main branch.
+      with:
+        path: dist
+
+  cache_node_modules:
+    name: Cache node_modules
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4
+    - uses: actions/setup-node@v3
+      with:
+        node-version: 14
+        cache: 'yarn'
+    - run: yarn install --frozen-lockfile
+
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    needs: build
+    if: github.ref == 'refs/heads/main' # Only deploy on main branch.
+    concurrency:
+      group: deploy
+      cancel-in-progress: true
+    steps:
+    - name: Deploy to GitHub Pages
+      id: deployment
+      uses: actions/deploy-pages@v1
+
   prettier:
     name: Prettier
     runs-on: ubuntu-latest
-
+    needs: cache_node_modules
     steps:
-    - uses: actions/checkout@v2
-    - uses: actions/setup-node@v1
+    - uses: actions/checkout@v4
+    - uses: actions/setup-node@v3
       with:
-        node-version: 10
-
-    - uses: actions/cache@v1
-      with:
-        path: node_modules
-        key: ${{ runner.os }}-yarn-v1-${{ hashFiles('**/yarn.lock') }}
-        restore-keys: |
-          ${{ runner.os }}-yarn-v1-
-
-    - run: yarn install
-
-    - name: yarn prettier
-      run: yarn prettier --check *.html src
+        node-version: 14
+        cache: 'yarn'
+    - run: yarn install --frozen-lockfile
+    - run: yarn prettier --check *.html src

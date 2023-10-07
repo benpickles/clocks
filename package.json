@@ -20,7 +20,7 @@
     "puppeteer": "^5.3.1"
   },
   "parcel": {
-    "outDir": "dist/clocks",
+    "outDir": "dist",
     "publicUrl": "/clocks/"
   },
   "prettier": {
