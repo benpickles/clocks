@@ -2,7 +2,7 @@
   "name": "clocks",
   "private": true,
   "scripts": {
-    "build": "NODE_ENV=production ./bin/build",
+    "build": "parcel build index.html",
     "start": "parcel index.html"
   },
   "dependencies": {
@@ -14,7 +14,6 @@
   "devDependencies": {
     "imagemin": "^7.0.1",
     "imagemin-pngquant": "^9.0.1",
-    "jsdom": "^16.4.0",
     "parcel-bundler": "^1.12.5",
     "prettier": "^2.2.1",
     "puppeteer": "^5.3.1"
