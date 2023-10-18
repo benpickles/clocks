@@ -28,14 +28,8 @@ function dayOfYear(date) {
 }
 
 const root = document.getElementById('root')
-const [
-  secondElem,
-  minuteElem,
-  hourElem,
-  dayElem,
-  monthElem,
-  yearElem,
-] = root.getElementsByTagName('div')
+const [secondElem, minuteElem, hourElem, dayElem, monthElem, yearElem] =
+  root.getElementsByTagName('div')
 
 function setBackgroundColour(date) {
   const [day, total] = dayOfYear(date)

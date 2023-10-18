@@ -2,8 +2,8 @@
   "name": "clocks",
   "private": true,
   "scripts": {
-    "build": "parcel build index.html",
-    "start": "parcel index.html"
+    "build": "parcel build",
+    "dev": "parcel"
   },
   "dependencies": {
     "d3-selection": "^2.0.0",
@@ -12,20 +12,22 @@
     "sass": "^1.26.10"
   },
   "devDependencies": {
-    "imagemin": "^7.0.1",
-    "imagemin-pngquant": "^9.0.1",
-    "parcel-bundler": "^1.12.5",
+    "@parcel/transformer-sass": "2.10.0",
+    "parcel": "^2.10.0",
     "prettier": "^2.2.1",
-    "puppeteer": "^5.3.1"
-  },
-  "parcel": {
-    "outDir": "dist",
-    "publicUrl": "/clocks/"
+    "process": "^0.11.10",
+    "puppeteer": "^21.3.8"
   },
   "prettier": {
     "arrowParens": "avoid",
     "semi": false,
     "singleQuote": true,
     "trailingComma": "es5"
+  },
+  "source": "index.html",
+  "targets": {
+    "": {
+      "publicUrl": "/clocks/"
+    }
   }
 }
